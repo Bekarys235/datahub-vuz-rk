@@ -30,7 +30,9 @@
       ],
       "for_foreign": "Поддержка с визами, англоязычные программы."
     },
-    "website": "https://nu.edu.kz"
+    "website": "https://nu.edu.kz",
+    "has3d": true,
+    "tourLink": "https://sketchfab.com/models/7w7pAfr6Kj5E9vUu2T0/embed"
   },
   {
     "id": 2,
@@ -62,7 +64,9 @@
       ],
       "for_foreign": "Информационная поддержка и англоязычные курсы."
     },
-    "website": "https://www.kaznu.kz"
+    "website": "https://www.kaznu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 3,
@@ -93,7 +97,9 @@
       ],
       "for_foreign": "Руководство по адаптации и жилью."
     },
-    "website": "https://www.enu.kz"
+    "website": "https://enu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 4,
@@ -124,7 +130,9 @@
       ],
       "for_foreign": "Помощь в оформлении проживания."
     },
-    "website": "https://satbayev.university"
+    "website": "https://satbayev.university",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 5,
@@ -154,7 +162,9 @@
       ],
       "for_foreign": "Англоязычные программы и поддержка."
     },
-    "website": "https://kbtu.edu.kz"
+    "website": "https://kbtu.edu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 6,
@@ -184,7 +194,9 @@
       ],
       "for_foreign": "Поддержка и консультации."
     },
-    "website": "https://www.kimep.kz"
+    "website": "https://www.kimep.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 7,
@@ -214,7 +226,9 @@
       ],
       "for_foreign": "Информационная поддержка."
     },
-    "website": "https://sdu.edu.kz"
+    "website": "https://sdu.edu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 8,
@@ -244,7 +258,9 @@
       ],
       "for_foreign": "Англоязычные курсы и помощь с жильём."
     },
-    "website": "https://iitu.edu.kz"
+    "website": "https://iitu.edu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 9,
@@ -274,7 +290,9 @@
       ],
       "for_foreign": "Ограниченное количество мест."
     },
-    "website": "https://asu.edu.kz"
+    "website": "https://asu.edu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 10,
@@ -304,7 +322,9 @@
       ],
       "for_foreign": "Программы на английском и клиническая практика."
     },
-    "website": "https://kaznmu.kz"
+    "website": "https://kaznmu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 11,
@@ -334,7 +354,9 @@
       ],
       "for_foreign": "Ограниченная поддержка; перевод документов."
     },
-    "website": "https://wktu.kz"
+    "website": "https://wktu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 12,
@@ -364,7 +386,9 @@
       ],
       "for_foreign": "Контакты международного отдела"
     },
-    "website": "https://tsu.kz"
+    "website": "https://tsu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 13,
@@ -390,7 +414,9 @@
       "partners": [],
       "for_foreign": "Нет/минимум"
     },
-    "website": "https://kru.kz"
+    "website": "https://kru.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 14,
@@ -420,7 +446,9 @@
       ],
       "for_foreign": "Ограниченная поддержка"
     },
-    "website": "https://asu-atyrau.kz"
+    "website": "https://asu-atyrau.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 15,
@@ -446,7 +474,9 @@
       "partners": [],
       "for_foreign": "Контакты международного отдела"
     },
-    "website": "https://psu.kz"
+    "website": "https://psu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 16,
@@ -476,7 +506,9 @@
       ],
       "for_foreign": "Минимальная поддержка"
     },
-    "website": "https://skspu.kz"
+    "website": "https://skspu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 17,
@@ -506,7 +538,9 @@
       ],
       "for_foreign": "Некоторая поддержка"
     },
-    "website": "https://kaznau.kz"
+    "website": "https://kaznau.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 18,
@@ -532,7 +566,9 @@
       "partners": [],
       "for_foreign": "Ограниченная поддержка"
     },
-    "website": "https://ektu.kz"
+    "website": "https://ektu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 19,
@@ -558,7 +594,9 @@
       "partners": [],
       "for_foreign": "Минимальная"
     },
-    "website": "https://keeu.kz"
+    "website": "https://keeu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 20,
@@ -587,7 +625,9 @@
       ],
       "for_foreign": "Поддержка и англоязычные курсы"
     },
-    "website": "https://krmu.kz"
+    "website": "https://krmu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 21,
@@ -613,7 +653,9 @@
       "partners": [],
       "for_foreign": "Нет/минимум"
     },
-    "website": "https://wku.kz"
+    "website": "https://wku.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 22,
@@ -643,7 +685,9 @@
       ],
       "for_foreign": "Специфика для иностранных моряков"
     },
-    "website": "https://maritime.kz"
+    "website": "https://maritime.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 23,
@@ -669,7 +713,9 @@
       "partners": [],
       "for_foreign": "Минимальная"
     },
-    "website": "https://ksu.kz"
+    "website": "https://ksu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 24,
@@ -699,7 +745,9 @@
       ],
       "for_foreign": "Краткие программы на английском"
     },
-    "website": "https://kazeu.kz"
+    "website": "https://kazeu.kz",
+    "has3d": false,
+    "tourLink": ""
   },
   {
     "id": 25,
@@ -725,6 +773,8 @@
       "partners": [],
       "for_foreign": "Минимальная"
     },
-    "website": "https://ssu.kz"
+    "website": "https://ssu.kz",
+    "has3d": false,
+    "tourLink": ""
   }
 ]

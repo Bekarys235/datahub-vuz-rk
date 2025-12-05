@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>DataHub — Top 25 Universities RK — Compare 2</title>
+<title>DataHub — Top 25 Universities RK — 3D demo (NU)</title>
 <style>
   :root{--accent:#2563eb;--muted:#6b7280}
   body{font-family:Inter,Segoe UI,Arial;margin:0;background:#f6fbff;color:#0f1720}
@@ -76,15 +76,20 @@
   </div>
 </div>
 
-<script>
-/* === Настройки === */
-const MAX_COMPARE = 2; // ровно 2 для сравнения
+<!-- 3D Tour Modal -->
+<div id="tour3dModal" class="modal" aria-hidden="true">
+  <div class="dialog" style="max-width:950px">
+    <button id="close3d" style="float:right;border:0;background:transparent;font-size:18px;cursor:pointer">✕</button>
+    <h3 style="margin-top:0">3D-тур</h3>
+    <div id="tour3dContent"></div>
+  </div>
+</div>
 
-/* === State === */
+<script>
+const MAX_COMPARE = 2;
 let dataList = [];
 let selectedForCompare = new Set();
 
-/* === Элементы === */
 const grid = document.getElementById('grid');
 const q = document.getElementById('q');
 const city = document.getElementById('city');
@@ -103,7 +108,10 @@ const compareModal = document.getElementById('compareModal');
 const compareContent = document.getElementById('compareContent');
 const closeCompare = document.getElementById('closeCompare');
 
-/* === Load JSON === */
+const tour3dModal = document.getElementById('tour3dModal');
+const tour3dContent = document.getElementById('tour3dContent');
+const close3d = document.getElementById('close3d');
+
 async function loadData(){
   try{
     const res = await fetch('data/universities.json');
@@ -116,14 +124,9 @@ async function loadData(){
   }
 }
 
-/* === Helpers === */
 function unique(arr,key){ return [...new Set(arr.map(x=>x[key]))] }
-function updateCompareUI(){
-  compareCount.textContent = selectedForCompare.size;
-  if(selectedForCompare.size === MAX_COMPARE) btnCompare.classList.remove('disabled'); else btnCompare.classList.add('disabled');
-}
+function updateCompareUI(){ compareCount.textContent = selectedForCompare.size; if(selectedForCompare.size === MAX_COMPARE) btnCompare.classList.remove('disabled'); else btnCompare.classList.add('disabled'); }
 
-/* === Render === */
 function render(){
   let list = dataList.slice();
   const term = q.value.trim().toLowerCase();
@@ -166,7 +169,6 @@ function render(){
   updateCompareUI();
 }
 
-/* === Detail modal === */
 function showDetail(id){
   const u = dataList.find(x=>x.id===id);
   if(!u) return;
@@ -187,21 +189,22 @@ function showDetail(id){
     <div class="small" style="margin-top:6px"><b>Программы обмена:</b> ${u.international.exchanges.length? u.international.exchanges.join(', '):'—'}<br><b>Партнёры:</b> ${u.international.partners.length? u.international.partners.join(', '):'—'}<br><b>Инфо для иностранцев:</b> ${u.international.for_foreign}</div>
 
     <div style="margin-top:12px"><a href="${u.website}" target="_blank">Официальный сайт</a></div>
+
+    <div style="margin-top:14px">
+      <div style="font-weight:700;margin-bottom:6px">3D-тур</div>
+      ${ u.has3d ? `<button onclick="open3DTour('${u.tourLink}')" style="padding:8px 12px;border-radius:8px;background:#2563eb;color:white;border:0;cursor:pointer">Открыть 3D-тур</button>` : `<div class="small" style="color:#6b7280">3D-тур недоступен</div>` }
+    </div>
   `;
   modal.classList.add('show'); modal.setAttribute('aria-hidden','false');
 }
+
 close.onclick = ()=>{ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
 modal.onclick = (e)=>{ if(e.target===modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); } }
 
-/* === Compare logic (limit 2) === */
 function toggleCompare(id){
-  if(selectedForCompare.has(id)){
-    selectedForCompare.delete(id);
-  } else {
-    if(selectedForCompare.size >= MAX_COMPARE){
-      alert('Можно сравнивать только 2 университета. Снятие выбора с одного позволяет выбрать другой.');
-      return;
-    }
+  if(selectedForCompare.has(id)) selectedForCompare.delete(id);
+  else {
+    if(selectedForCompare.size >= MAX_COMPARE){ alert('Можно сравнивать только 2 университетa. Сначала снимите выбор с одного.'); return; }
     selectedForCompare.add(id);
   }
   render();
@@ -211,10 +214,8 @@ btnCompare.onclick = ()=>{
   if(selectedForCompare.size !== MAX_COMPARE){ alert('Выберите ровно 2 университета для сравнения.'); return; }
   showCompareModal();
 };
-
 btnClear.onclick = ()=>{ selectedForCompare.clear(); render(); };
 
-/* === Build compare modal === */
 function showCompareModal(){
   const ids = Array.from(selectedForCompare);
   const items = ids.map(id => dataList.find(d=>d.id===id));
@@ -234,23 +235,21 @@ function showCompareModal(){
   compareContent.innerHTML = html;
   compareModal.classList.add('show'); compareModal.setAttribute('aria-hidden','false');
 }
+
 closeCompare.onclick = ()=>{ compareModal.classList.remove('show'); compareModal.setAttribute('aria-hidden','true'); }
 compareModal.onclick = (e)=>{ if(e.target===compareModal){ compareModal.classList.remove('show'); compareModal.setAttribute('aria-hidden','true'); } }
 
-/* === Filters init === */
-function initFilters(){
-  unique(dataList,'city').forEach(c=>{
-    const o=document.createElement('option'); o.value=c; o.textContent=c; city.appendChild(o);
-  });
-  const fields = [...new Set(dataList.flatMap(d=>d.programs))];
-  fields.forEach(f=>{ const o=document.createElement('option'); o.value=f; o.textContent=f; field.appendChild(o); });
+function open3DTour(url){
+  tour3dContent.innerHTML = `<iframe src="${url}" frameborder="0" allowfullscreen style="width:100%;height:520px;border-radius:10px"></iframe>`;
+  tour3dModal.classList.add('show'); tour3dModal.setAttribute('aria-hidden','false');
 }
+close3d.onclick = ()=>{ tour3dModal.classList.remove('show'); tour3dModal.setAttribute('aria-hidden','true'); tour3dContent.innerHTML = ''; }
+tour3dModal.onclick = (e)=>{ if(e.target===tour3dModal){ tour3dModal.classList.remove('show'); tour3dModal.setAttribute('aria-hidden','true'); tour3dContent.innerHTML = ''; } }
 
-/* === Events === */
-[q,city,field,rankFilter,sortSel].forEach(el => el.addEventListener('input', render));
-q.addEventListener('keydown', e=>{ if(e.key==='Enter') render(); });
+function initFilters(){ unique(dataList,'city').forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=c; city.appendChild(o); }); const fields = [...new Set(dataList.flatMap(d=>d.programs))]; fields.forEach(f=>{ const o=document.createElement('option'); o.value=f; o.textContent=f; field.appendChild(o); }); }
 
-/* === Start === */
+[q,city,field,rankFilter,sortSel].forEach(el => el.addEventListener('input', render)); q.addEventListener('keydown', e=>{ if(e.key==='Enter') render(); });
+
 loadData();
 </script>
 </body>
