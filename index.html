@@ -1,47 +1,257 @@
-
 <!doctype html>
 <html lang="ru">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>DataHub — Top Universities RK (25) — fetch JSON</title>
+<title>DataHub — Top 25 Universities RK — Compare 2</title>
 <style>
-  body{font-family:Inter,Segoe UI,Arial;margin:0;background:linear-gradient(180deg,#eef6ff 0%, #fff 80%);color:#0f1720}
-  .container{max-width:1100px;margin:20px auto;padding:0 20px}
+  :root{--accent:#2563eb;--muted:#6b7280}
+  body{font-family:Inter,Segoe UI,Arial;margin:0;background:#f6fbff;color:#0f1720}
+  .wrap{max-width:1200px;margin:18px auto;padding:0 18px}
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  h1{margin:0;font-size:22px}
+  .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  input,select,button{padding:9px;border-radius:8px;border:1px solid #d7e2f0}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-  .card{background:white;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(11,22,40,.06)}
+  .card{background:#fff;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(10,20,40,.06)}
+  .rank{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}
+  .diamond{background:#e7f7ff;color:#055a8c}
+  .gold{background:#fff4d9;color:#6b4a00}
+  .silver{background:#eef4fb;color:#1b3a66}
+  .bronze{background:#f8efe0;color:#8a4b20}
+  .small{font-size:13px;color:var(--muted)}
   .program{background:#f4f7fb;padding:6px 10px;border-radius:8px;margin:6px 6px 0 0;display:inline-block}
-  button{background:#2b6cb0;color:white;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
-  .small{font-size:13px;color:#6b7280}
+  .modal{position:fixed;inset:0;background:rgba(2,6,23,.5);display:flex;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:.15s;z-index:60}
+  .modal.show{visibility:visible;opacity:1}
+  .dialog{background:#fff;border-radius:12px;padding:18px;max-width:900px;width:96%;max-height:90vh;overflow:auto}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:8px;border:1px solid #eef2f6;text-align:left;vertical-align:top}
+  .actions{display:flex;gap:8px;align-items:center}
+  .compare-count{background:#e8f4ff;padding:6px 10px;border-radius:999px;font-weight:700;color:#0b4a72}
+  .disabled{opacity:.45;pointer-events:none}
+  footer{margin:18px 0;color:var(--muted);text-align:center}
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>DataHub — Top Universities RK (25)</h1>
-  <p class="small">Данные загружаются из <code>data/universities.json</code></p>
-  <div id="grid" class="grid"></div>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>DataHub — Top 25 Universities RK</h1>
+      <div class="small">Сравнивай 2 университета, смотри требования к поступлению и международные программы</div>
+    </div>
+    <div class="actions">
+      <div class="small">Выбрано для сравнения: <span id="compareCount" class="compare-count">0</span></div>
+      <button id="btnCompare" class="disabled">Сравнить</button>
+      <button id="btnClear">Очистить</button>
+    </div>
+  </header>
+
+  <div class="controls">
+    <input id="q" placeholder="Поиск по названию или описанию..." style="flex:1;min-width:180px" />
+    <select id="city"><option value="">Все города</option></select>
+    <select id="field"><option value="">Все направления</option></select>
+    <select id="rankFilter"><option value="">Все ранги</option><option value="Diamond">Diamond</option><option value="Gold">Gold</option><option value="Silver">Silver</option><option value="Bronze">Bronze</option></select>
+    <select id="sort"><option value="score_desc">По рейтингу ↓</option><option value="score_asc">По рейтингу ↑</option></select>
+  </div>
+
+  <div id="grid" class="grid">Загрузка...</div>
+
+  <footer>Демо-версия — данные тестовые. Для обновления данных редактируй <code>data/universities.json</code></footer>
+</div>
+
+<!-- Detail modal -->
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="dialog">
+    <button id="close" style="float:right;border:0;background:transparent;font-size:18px;cursor:pointer">✕</button>
+    <div id="detail"></div>
+  </div>
+</div>
+
+<!-- Compare modal -->
+<div id="compareModal" class="modal" aria-hidden="true">
+  <div class="dialog">
+    <button id="closeCompare" style="float:right;border:0;background:transparent;font-size:18px;cursor:pointer">✕</button>
+    <h3 style="margin-top:0">Сравнение двух вузов</h3>
+    <div id="compareContent"></div>
+  </div>
 </div>
 
 <script>
-async function load() {
-  const res = await fetch('data/universities.json');
-  const data = await res.json();
-  const grid = document.getElementById('grid');
-  grid.innerHTML = data.map(u => `
-    <div class="card">
-      <strong>${u.name}</strong>
-      <div class="small">${u.city} • ${u.rank} • ${u.score} pts</div>
-      <div style="margin-top:8px">${u.description}</div>
-      <div style="margin-top:8px">${u.programs.slice(0,4).map(p=>`<span class="program">${p}</span>`).join('')}</div>
-      <div style="margin-top:10px"><a href="${u.website}" target="_blank">Официальный сайт</a></div>
-    </div>
-  `).join('');
+/* === Настройки === */
+const MAX_COMPARE = 2; // ровно 2 для сравнения
+
+/* === State === */
+let dataList = [];
+let selectedForCompare = new Set();
+
+/* === Элементы === */
+const grid = document.getElementById('grid');
+const q = document.getElementById('q');
+const city = document.getElementById('city');
+const field = document.getElementById('field');
+const rankFilter = document.getElementById('rankFilter');
+const sortSel = document.getElementById('sort');
+const compareCount = document.getElementById('compareCount');
+const btnCompare = document.getElementById('btnCompare');
+const btnClear = document.getElementById('btnClear');
+
+const modal = document.getElementById('modal');
+const detail = document.getElementById('detail');
+const close = document.getElementById('close');
+
+const compareModal = document.getElementById('compareModal');
+const compareContent = document.getElementById('compareContent');
+const closeCompare = document.getElementById('closeCompare');
+
+/* === Load JSON === */
+async function loadData(){
+  try{
+    const res = await fetch('data/universities.json');
+    dataList = await res.json();
+    initFilters();
+    render();
+  }catch(err){
+    grid.innerHTML = '<div class="small">Ошибка загрузки данных. Убедитесь, что файл <code>data/universities.json</code> доступен и вы запускаете сайт через HTTP (локальный сервер или Pages).</div>';
+    console.error(err);
+  }
 }
 
-load().catch(err => {
-  document.getElementById('grid').innerHTML = '<div class="small">Ошибка загрузки данных. Возможно открыли файл напрямую — используйте локальный сервер или GitHub Pages.</div>';
-  console.error(err);
-});
+/* === Helpers === */
+function unique(arr,key){ return [...new Set(arr.map(x=>x[key]))] }
+function updateCompareUI(){
+  compareCount.textContent = selectedForCompare.size;
+  if(selectedForCompare.size === MAX_COMPARE) btnCompare.classList.remove('disabled'); else btnCompare.classList.add('disabled');
+}
+
+/* === Render === */
+function render(){
+  let list = dataList.slice();
+  const term = q.value.trim().toLowerCase();
+  if(term) list = list.filter(u => u.name.toLowerCase().includes(term) || (u.short||'').toLowerCase().includes(term));
+  if(city.value) list = list.filter(u => u.city === city.value);
+  if(field.value) list = list.filter(u => u.programs.includes(field.value));
+  if(rankFilter.value) list = list.filter(u => u.rank === rankFilter.value);
+  if(sortSel.value === 'score_desc') list.sort((a,b)=>b.score - a.score); else list.sort((a,b)=>a.score - b.score);
+
+  if(list.length === 0){ grid.innerHTML = '<div class="small">Ничего не найдено.</div>'; return; }
+
+  grid.innerHTML = list.map(u => {
+    const checked = selectedForCompare.has(u.id) ? 'checked' : '';
+    return `
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div style="flex:1">
+            <div style="font-weight:700">${u.name}</div>
+            <div class="small">${u.city} • ${u.short}</div>
+          </div>
+          <div style="text-align:right">
+            <div class="rank ${u.rank.toLowerCase()}">${u.rank}</div>
+            <div style="font-weight:700;margin-top:8px">${u.score} pts</div>
+          </div>
+        </div>
+
+        <div style="margin-top:10px">${u.programs.slice(0,4).map(p=>`<span class="program">${p}</span>`).join('')}</div>
+
+        <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
+          <div class="small">#${u.id}</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <label class="small"><input type="checkbox" ${checked} onchange="toggleCompare(${u.id})"> Сравнить</label>
+            <button onclick="showDetail(${u.id})">Подробнее</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  updateCompareUI();
+}
+
+/* === Detail modal === */
+function showDetail(id){
+  const u = dataList.find(x=>x.id===id);
+  if(!u) return;
+  detail.innerHTML = `
+    <h2 style="margin:0 0 6px">${u.name} <small class="small">• ${u.rank} • ${u.score} pts</small></h2>
+    <div class="small" style="margin-bottom:10px">${u.city}</div>
+    <div style="margin-bottom:10px">${u.description}</div>
+    <div style="font-weight:700">Программы</div>
+    <div style="margin-bottom:10px">${u.programs.map(p=>`<span class="program">${p}</span>`).join('')}</div>
+
+    <div style="font-weight:700;margin-top:8px">Приём и поступление</div>
+    <div class="small" style="margin-top:6px">${u.admission}</div>
+
+    <div style="font-weight:700;margin-top:8px">Процедуры, сроки и стипендии</div>
+    <div class="small" style="margin-top:6px">${u.admission_details.procedure}<br><b>Сроки:</b> ${u.admission_details.deadlines}<br><b>Стипендии:</b> ${u.admission_details.scholarships}</div>
+
+    <div style="font-weight:700;margin-top:8px">Международное сотрудничество</div>
+    <div class="small" style="margin-top:6px"><b>Программы обмена:</b> ${u.international.exchanges.length? u.international.exchanges.join(', '):'—'}<br><b>Партнёры:</b> ${u.international.partners.length? u.international.partners.join(', '):'—'}<br><b>Инфо для иностранцев:</b> ${u.international.for_foreign}</div>
+
+    <div style="margin-top:12px"><a href="${u.website}" target="_blank">Официальный сайт</a></div>
+  `;
+  modal.classList.add('show'); modal.setAttribute('aria-hidden','false');
+}
+close.onclick = ()=>{ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
+modal.onclick = (e)=>{ if(e.target===modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); } }
+
+/* === Compare logic (limit 2) === */
+function toggleCompare(id){
+  if(selectedForCompare.has(id)){
+    selectedForCompare.delete(id);
+  } else {
+    if(selectedForCompare.size >= MAX_COMPARE){
+      alert('Можно сравнивать только 2 университета. Снятие выбора с одного позволяет выбрать другой.');
+      return;
+    }
+    selectedForCompare.add(id);
+  }
+  render();
+}
+
+btnCompare.onclick = ()=>{
+  if(selectedForCompare.size !== MAX_COMPARE){ alert('Выберите ровно 2 университета для сравнения.'); return; }
+  showCompareModal();
+};
+
+btnClear.onclick = ()=>{ selectedForCompare.clear(); render(); };
+
+/* === Build compare modal === */
+function showCompareModal(){
+  const ids = Array.from(selectedForCompare);
+  const items = ids.map(id => dataList.find(d=>d.id===id));
+  let html = '<table><thead><tr><th>Параметр</th>';
+  items.forEach(it => html += `<th>${it.name}<div class="small">${it.city} • ${it.rank}</div></th>`);
+  html += '</tr></thead><tbody>';
+  html += '<tr><td><b>Рейтинг (pts)</b></td>' + items.map(it=>`<td>${it.score}</td>`).join('') + '</tr>';
+  html += '<tr><td><b>Программы</b></td>' + items.map(it=>`<td>${it.programs.join(', ')}</td>`).join('') + '</tr>';
+  html += '<tr><td><b>Краткие требования</b></td>' + items.map(it=>`<td>${it.admission}</td>`).join('') + '</tr>';
+  html += '<tr><td><b>Процедуры / сроки</b></td>' + items.map(it=>`<td>${it.admission_details.procedure}<br><b>Сроки:</b> ${it.admission_details.deadlines}</td>`).join('') + '</tr>';
+  html += '<tr><td><b>Стипендии</b></td>' + items.map(it=>`<td>${it.admission_details.scholarships}</td>`).join('') + '</tr>';
+  html += '<tr><td><b>Программы обмена</b></td>' + items.map(it=>`<td>${it.international.exchanges.length? it.international.exchanges.join(', '):'—'}</td>`).join('') + '</tr>';
+  html += '<tr><td><b>Партнёры</b></td>' + items.map(it=>`<td>${it.international.partners.length? it.international.partners.join(', '):'—'}</td>`).join('') + '</tr>';
+  html += '<tr><td><b>Инфо для иностранцев</b></td>' + items.map(it=>`<td>${it.international.for_foreign}</td>`).join('') + '</tr>';
+  html += '<tr><td><b>Сайт</b></td>' + items.map(it=>`<td><a href="${it.website}" target="_blank">${it.website}</a></td>`).join('') + '</tr>';
+  html += '</tbody></table>';
+  compareContent.innerHTML = html;
+  compareModal.classList.add('show'); compareModal.setAttribute('aria-hidden','false');
+}
+closeCompare.onclick = ()=>{ compareModal.classList.remove('show'); compareModal.setAttribute('aria-hidden','true'); }
+compareModal.onclick = (e)=>{ if(e.target===compareModal){ compareModal.classList.remove('show'); compareModal.setAttribute('aria-hidden','true'); } }
+
+/* === Filters init === */
+function initFilters(){
+  unique(dataList,'city').forEach(c=>{
+    const o=document.createElement('option'); o.value=c; o.textContent=c; city.appendChild(o);
+  });
+  const fields = [...new Set(dataList.flatMap(d=>d.programs))];
+  fields.forEach(f=>{ const o=document.createElement('option'); o.value=f; o.textContent=f; field.appendChild(o); });
+}
+
+/* === Events === */
+[q,city,field,rankFilter,sortSel].forEach(el => el.addEventListener('input', render));
+q.addEventListener('keydown', e=>{ if(e.key==='Enter') render(); });
+
+/* === Start === */
+loadData();
 </script>
 </body>
 </html>
