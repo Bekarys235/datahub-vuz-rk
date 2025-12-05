@@ -1,0 +1,47 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DataHub — Top Universities RK (25) — fetch JSON</title>
+<style>
+  body{font-family:Inter,Segoe UI,Arial;margin:0;background:linear-gradient(180deg,#eef6ff 0%, #fff 80%);color:#0f1720}
+  .container{max-width:1100px;margin:20px auto;padding:0 20px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+  .card{background:white;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(11,22,40,.06)}
+  .program{background:#f4f7fb;padding:6px 10px;border-radius:8px;margin:6px 6px 0 0;display:inline-block}
+  button{background:#2b6cb0;color:white;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+  .small{font-size:13px;color:#6b7280}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>DataHub — Top Universities RK (25)</h1>
+  <p class="small">Данные загружаются из <code>data/universities.json</code></p>
+  <div id="grid" class="grid"></div>
+</div>
+
+<script>
+async function load() {
+  const res = await fetch('data/universities.json');
+  const data = await res.json();
+  const grid = document.getElementById('grid');
+  grid.innerHTML = data.map(u => `
+    <div class="card">
+      <strong>${u.name}</strong>
+      <div class="small">${u.city} • ${u.rank} • ${u.score} pts</div>
+      <div style="margin-top:8px">${u.description}</div>
+      <div style="margin-top:8px">${u.programs.slice(0,4).map(p=>`<span class="program">${p}</span>`).join('')}</div>
+      <div style="margin-top:10px"><a href="${u.website}" target="_blank">Официальный сайт</a></div>
+    </div>
+  `).join('');
+}
+
+load().catch(err => {
+  document.getElementById('grid').innerHTML = '<div class="small">Ошибка загрузки данных. Возможно открыли файл напрямую — используйте локальный сервер или GitHub Pages.</div>';
+  console.error(err);
+});
+</script>
+</body>
+</html>
