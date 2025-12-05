@@ -7,12 +7,7 @@
     "rank": "Diamond",
     "short": "Флагманский исследовательский университет.",
     "description": "Международный исследовательский университет с сильными программами в инженерии, экономике и медицине.",
-    "programs": [
-      "Computer Science",
-      "Engineering",
-      "Medicine",
-      "Economics"
-    ],
+    "programs": ["Computer Science", "Engineering", "Medicine", "Economics"],
     "admission": "Внутренний тест + интервью; английский уровень (IELTS/TOEFL) или внутренний экзамен.",
     "admission_details": {
       "procedure": "Регистрация онлайн → подача документов → внутренний тест → интервью.",
@@ -20,19 +15,13 @@
       "scholarships": "Полные и частичные стипендии."
     },
     "international": {
-      "exchanges": [
-        "MIT (observer)"
-      ],
-      "partners": [
-        "MIT",
-        "Imperial College London",
-        "KTH"
-      ],
+      "exchanges": ["MIT (observer)"],
+      "partners": ["MIT", "Imperial College London", "KTH"],
       "for_foreign": "Поддержка с визами, англоязычные программы."
     },
     "website": "https://nu.edu.kz",
     "has3d": true,
-    "tourLink": "https://sketchfab.com/models/7w7pAfr6Kj5E9vUu2T0/embed"
+    "tourLink": "https://nu.edu.kz/ru/campus/campustour"
   },
   {
     "id": 2,
@@ -42,12 +31,7 @@
     "rank": "Diamond",
     "short": "Крупнейший классический университет Казахстана.",
     "description": "Сильные программы в естественных науках, математике и гуманитарных направлениях.",
-    "programs": [
-      "Mathematics",
-      "Physics",
-      "Biology",
-      "Computer Science"
-    ],
+    "programs": ["Mathematics", "Physics", "Biology", "Computer Science"],
     "admission": "ЕНТ/аттестат, профильные испытания для отдельных факультетов.",
     "admission_details": {
       "procedure": "Подача через электронный кабинет → проверка документов → конкурс.",
@@ -55,13 +39,8 @@
       "scholarships": "Государственные гранты и стипендии."
     },
     "international": {
-      "exchanges": [
-        "Erasmus+ проекты"
-      ],
-      "partners": [
-        "Moscow State University",
-        "European partners"
-      ],
+      "exchanges": ["Erasmus+ проекты"],
+      "partners": ["Moscow State University", "European partners"],
       "for_foreign": "Информационная поддержка и англоязычные курсы."
     },
     "website": "https://www.kaznu.kz",
@@ -76,12 +55,7 @@
     "rank": "Diamond",
     "short": "Широкий спектр академических программ и международных связей.",
     "description": "Классический университет с акцентом на международное сотрудничество.",
-    "programs": [
-      "International Relations",
-      "History",
-      "Engineering",
-      "IT"
-    ],
+    "programs": ["International Relations", "History", "Engineering", "IT"],
     "admission": "ЕНТ/аттестат; дополнительные испытания по профилю.",
     "admission_details": {
       "procedure": "Онлайн регистрация → подача документов → вступительные испытания.",
@@ -89,12 +63,8 @@
       "scholarships": "Стипендии для лучших абитуриентов."
     },
     "international": {
-      "exchanges": [
-        "Erasmus+ и двусторонние соглашения"
-      ],
-      "partners": [
-        "Вузы СНГ и Европы"
-      ],
+      "exchanges": ["Erasmus+ и двусторонние соглашения"],
+      "partners": ["Вузы СНГ и Европы"],
       "for_foreign": "Руководство по адаптации и жилью."
     },
     "website": "https://enu.kz",
@@ -109,12 +79,7 @@
     "rank": "Diamond",
     "short": "Ведущий технический университет страны.",
     "description": "Фокус на инженерных и технических специальностях.",
-    "programs": [
-      "Mechanical Engineering",
-      "Electrical Engineering",
-      "IT",
-      "Mining"
-    ],
+    "programs": ["Mechanical Engineering", "Electrical Engineering", "IT", "Mining"],
     "admission": "ЕНТ/аттестат + профильные задания.",
     "admission_details": {
       "procedure": "Подача документов → профильные тесты → конкурс.",
@@ -122,12 +87,8 @@
       "scholarships": "Гранты и стипендии от партнёров."
     },
     "international": {
-      "exchanges": [
-        "Программы обмена с техническими вузами Европы"
-      ],
-      "partners": [
-        "TU Dresden и др."
-      ],
+      "exchanges": ["Программы обмена с техническими вузами Европы"],
+      "partners": ["TU Dresden и др."],
       "for_foreign": "Помощь в оформлении проживания."
     },
     "website": "https://satbayev.university",
@@ -142,11 +103,7 @@
     "rank": "Gold",
     "short": "Технический университет с англоязычной программной базой.",
     "description": "Международные программы и практико-ориентированное обучение.",
-    "programs": [
-      "Petroleum Engineering",
-      "Computer Science",
-      "Business"
-    ],
+    "programs": ["Petroleum Engineering", "Computer Science", "Business"],
     "admission": "Аттестат/ЕНТ, тест по английскому, мотивационное письмо.",
     "admission_details": {
       "procedure": "Онлайн-заявка → тест по английскому → оценка портфолио.",
@@ -154,12 +111,8 @@
       "scholarships": "Частичные стипендии за достижения."
     },
     "international": {
-      "exchanges": [
-        "Партнёрства с британскими вузами"
-      ],
-      "partners": [
-        "UK partner institutions"
-      ],
+      "exchanges": ["Партнёрства с британскими вузами"],
+      "partners": ["UK partner institutions"],
       "for_foreign": "Англоязычные программы и поддержка."
     },
     "website": "https://kbtu.edu.kz",
@@ -174,11 +127,7 @@
     "rank": "Gold",
     "short": "Признан за бизнес-образование и экономику.",
     "description": "Фокус на бизнесе, экономике и международных связях.",
-    "programs": [
-      "Business Administration",
-      "Economics",
-      "Finance"
-    ],
+    "programs": ["Business Administration", "Economics", "Finance"],
     "admission": "Аттестат/ЕНТ, тесты по английскому, мотивационное письмо.",
     "admission_details": {
       "procedure": "Онлайн-заявка → проверка документов → интервью/тесты.",
@@ -186,12 +135,8 @@
       "scholarships": "Финансовая помощь для талантливых студентов."
     },
     "international": {
-      "exchanges": [
-        "Партнёрства с американскими и европейскими вузами"
-      ],
-      "partners": [
-        "US and EU partners"
-      ],
+      "exchanges": ["Партнёрства с американскими и европейскими вузами"],
+      "partners": ["US and EU partners"],
       "for_foreign": "Поддержка и консультации."
     },
     "website": "https://www.kimep.kz",
@@ -206,11 +151,7 @@
     "rank": "Gold",
     "short": "Популярный частный университет.",
     "description": "Практико-ориентированные программы в инженерии и IT.",
-    "programs": [
-      "Computer Science",
-      "Engineering",
-      "Law"
-    ],
+    "programs": ["Computer Science", "Engineering", "Law"],
     "admission": "Аттестат, внутренние тесты/собеседования.",
     "admission_details": {
       "procedure": "Онлайн-заявление → внутренние тесты → подтверждение приёма.",
@@ -218,12 +159,8 @@
       "scholarships": "Частные стипендии."
     },
     "international": {
-      "exchanges": [
-        "Erasmus+ и летние школы"
-      ],
-      "partners": [
-        "Технологические вузы Европы и Турции"
-      ],
+      "exchanges": ["Erasmus+ и летние школы"],
+      "partners": ["Технологические вузы Европы и Турции"],
       "for_foreign": "Информационная поддержка."
     },
     "website": "https://sdu.edu.kz",
@@ -238,11 +175,7 @@
     "rank": "Gold",
     "short": "Специализированный IT-вуз.",
     "description": "Фокус на современных IT-направлениях и стартап-экосистеме.",
-    "programs": [
-      "Software Engineering",
-      "Data Science",
-      "Cybersecurity"
-    ],
+    "programs": ["Software Engineering", "Data Science", "Cybersecurity"],
     "admission": "ЕНТ/аттестат, профильные тесты и собеседование.",
     "admission_details": {
       "procedure": "Заявка → профильный тест → собеседование.",
@@ -250,12 +183,8 @@
       "scholarships": "Стипендии за академические достижения."
     },
     "international": {
-      "exchanges": [
-        "IT-партнёрства"
-      ],
-      "partners": [
-        "Tech partners"
-      ],
+      "exchanges": ["IT-партнёрства"],
+      "partners": ["Tech partners"],
       "for_foreign": "Англоязычные курсы и помощь с жильём."
     },
     "website": "https://iitu.edu.kz",
@@ -270,11 +199,7 @@
     "rank": "Gold",
     "short": "Авторитетный региональный классический вуз.",
     "description": "Широкий набор гуманитарных и естественнонаучных программ.",
-    "programs": [
-      "Education",
-      "Law",
-      "Biology"
-    ],
+    "programs": ["Education", "Law", "Biology"],
     "admission": "Аттестат/ЕНТ, стандартные требования.",
     "admission_details": {
       "procedure": "Подача через электронный кабинет → конкурс.",
@@ -282,12 +207,8 @@
       "scholarships": "Региональные стипендии."
     },
     "international": {
-      "exchanges": [
-        "Сотрудничество с вузами СНГ"
-      ],
-      "partners": [
-        "Regional partners"
-      ],
+      "exchanges": ["Сотрудничество с вузами СНГ"],
+      "partners": ["Regional partners"],
       "for_foreign": "Ограниченное количество мест."
     },
     "website": "https://asu.edu.kz",
@@ -302,11 +223,7 @@
     "rank": "Gold",
     "short": "Ведущий медицинский университет.",
     "description": "Сильная клиническая подготовка и исследования.",
-    "programs": [
-      "Medicine",
-      "Dentistry",
-      "Nursing"
-    ],
+    "programs": ["Medicine", "Dentistry", "Nursing"],
     "admission": "Аттестат, профильные экзамены и медосмотр.",
     "admission_details": {
       "procedure": "Подача документов → профильные тесты → медицинская комиссия.",
@@ -314,12 +231,8 @@
       "scholarships": "Стипендии и гранты для исследовательских проектов."
     },
     "international": {
-      "exchanges": [
-        "Медицинские обмены"
-      ],
-      "partners": [
-        "Medical partners"
-      ],
+      "exchanges": ["Медицинские обмены"],
+      "partners": ["Medical partners"],
       "for_foreign": "Программы на английском и клиническая практика."
     },
     "website": "https://kaznmu.kz",
@@ -334,11 +247,7 @@
     "rank": "Silver",
     "short": "Аграрные и технические программы.",
     "description": "Практические программы для аграрного сектора.",
-    "programs": [
-      "Agronomy",
-      "Animal Science",
-      "Engineering"
-    ],
+    "programs": ["Agronomy", "Animal Science", "Engineering"],
     "admission": "Аттестат/ЕНТ, профильные испытания.",
     "admission_details": {
       "procedure": "Онлайн заявка → профильные тесты → подтверждение.",
@@ -346,12 +255,8 @@
       "scholarships": "Аграрные гранты."
     },
     "international": {
-      "exchanges": [
-        "Аграрные обмены"
-      ],
-      "partners": [
-        "Regional agri partners"
-      ],
+      "exchanges": ["Аграрные обмены"],
+      "partners": ["Regional agri partners"],
       "for_foreign": "Ограниченная поддержка; перевод документов."
     },
     "website": "https://wktu.kz",
@@ -366,11 +271,7 @@
     "rank": "Silver",
     "short": "Региональный университет.",
     "description": "Разнообразие программ в южном регионе.",
-    "programs": [
-      "Education",
-      "History",
-      "Economics"
-    ],
+    "programs": ["Education", "History", "Economics"],
     "admission": "Аттестат/ЕНТ; внутренние испытания.",
     "admission_details": {
       "procedure": "Подача документов → конкурс",
@@ -378,12 +279,8 @@
       "scholarships": "Региональные стипендии"
     },
     "international": {
-      "exchanges": [
-        "СНГ"
-      ],
-      "partners": [
-        "Regional partners"
-      ],
+      "exchanges": ["СНГ"],
+      "partners": ["Regional partners"],
       "for_foreign": "Контакты международного отдела"
     },
     "website": "https://tsu.kz",
@@ -398,11 +295,7 @@
     "rank": "Silver",
     "short": "Прикладные программы и трудоустройство.",
     "description": "Ориентирован на практику.",
-    "programs": [
-      "Engineering",
-      "Logistics",
-      "Business"
-    ],
+    "programs": ["Engineering", "Logistics", "Business"],
     "admission": "Аттестат, внутренние тесты.",
     "admission_details": {
       "procedure": "Заявка → тесты",
@@ -426,11 +319,7 @@
     "rank": "Silver",
     "short": "Нефтегазовые и инженерные программы.",
     "description": "Фокус на нефтегазовой индустрии.",
-    "programs": [
-      "Petroleum Engineering",
-      "Chemistry",
-      "Economics"
-    ],
+    "programs": ["Petroleum Engineering", "Chemistry", "Economics"],
     "admission": "Аттестат, профильный экзамен.",
     "admission_details": {
       "procedure": "Подача документов → профильный экзамен",
@@ -438,12 +327,8 @@
       "scholarships": "Индустриальные гранты"
     },
     "international": {
-      "exchanges": [
-        "Industry partnerships"
-      ],
-      "partners": [
-        "Oil companies"
-      ],
+      "exchanges": ["Industry partnerships"],
+      "partners": ["Oil companies"],
       "for_foreign": "Ограниченная поддержка"
     },
     "website": "https://asu-atyrau.kz",
@@ -458,11 +343,7 @@
     "rank": "Silver",
     "short": "Классический региональный вуз.",
     "description": "Широкий круг программ.",
-    "programs": [
-      "Physics",
-      "Mathematics",
-      "Education"
-    ],
+    "programs": ["Physics", "Mathematics", "Education"],
     "admission": "Аттестат/ЕНТ.",
     "admission_details": {
       "procedure": "Электронная заявка",
@@ -486,11 +367,7 @@
     "rank": "Silver",
     "short": "Педагогические программы.",
     "description": "Подготовка учителей и социальных специалистов.",
-    "programs": [
-      "Education",
-      "Psychology",
-      "Sociology"
-    ],
+    "programs": ["Education", "Psychology", "Sociology"],
     "admission": "Аттестат, тесты по профильным предметам.",
     "admission_details": {
       "procedure": "Заявка → профильные тесты",
@@ -498,12 +375,8 @@
       "scholarships": "Педагогические гранты"
     },
     "international": {
-      "exchanges": [
-        "Education projects"
-      ],
-      "partners": [
-        "Pedagogical partners"
-      ],
+      "exchanges": ["Education projects"],
+      "partners": ["Pedagogical partners"],
       "for_foreign": "Минимальная поддержка"
     },
     "website": "https://skspu.kz",
@@ -518,11 +391,7 @@
     "rank": "Silver",
     "short": "Аграрные науки и технологии.",
     "description": "Поддержка аграрного сектора.",
-    "programs": [
-      "Agriculture",
-      "Food Technology",
-      "Veterinary"
-    ],
+    "programs": ["Agriculture", "Food Technology", "Veterinary"],
     "admission": "Аттестат, профильные испытания.",
     "admission_details": {
       "procedure": "Заявка → профильный отбор",
@@ -530,12 +399,8 @@
       "scholarships": "Гранты агропрома"
     },
     "international": {
-      "exchanges": [
-        "Agri exchange"
-      ],
-      "partners": [
-        "Agricultural partners"
-      ],
+      "exchanges": ["Agri exchange"],
+      "partners": ["Agricultural partners"],
       "for_foreign": "Некоторая поддержка"
     },
     "website": "https://kaznau.kz",
@@ -550,11 +415,7 @@
     "rank": "Bronze",
     "short": "Технические программы в востоке Казахстана.",
     "description": "Для местной промышленности и технических профессий.",
-    "programs": [
-      "Mining",
-      "Mechanical Engineering",
-      "IT"
-    ],
+    "programs": ["Mining", "Mechanical Engineering", "IT"],
     "admission": "Аттестат/ЕНТ, технические тесты.",
     "admission_details": {
       "procedure": "Подача документов → тесты",
@@ -578,11 +439,7 @@
     "rank": "Bronze",
     "short": "Инженерные и экономические программы.",
     "description": "Практическая подготовка и индустриальные связи.",
-    "programs": [
-      "Engineering",
-      "Economics",
-      "Logistics"
-    ],
+    "programs": ["Engineering", "Economics", "Logistics"],
     "admission": "Аттестат, профильные тесты.",
     "admission_details": {
       "procedure": "Онлайн-заявка",
@@ -606,10 +463,7 @@
     "rank": "Bronze",
     "short": "Медицинское образование с международными связями.",
     "description": "Клиническая подготовка и обмены.",
-    "programs": [
-      "Medicine",
-      "Pharmacy"
-    ],
+    "programs": ["Medicine", "Pharmacy"],
     "admission": "Аттестат, профильные экзамены и медосмотр.",
     "admission_details": {
       "procedure": "Заявка → тесты → комиссия",
@@ -617,12 +471,8 @@
       "scholarships": "Медицинские гранты"
     },
     "international": {
-      "exchanges": [
-        "Medical partners"
-      ],
-      "partners": [
-        "Russian medical centers"
-      ],
+      "exchanges": ["Medical partners"],
+      "partners": ["Russian medical centers"],
       "for_foreign": "Поддержка и англоязычные курсы"
     },
     "website": "https://krmu.kz",
@@ -637,11 +487,7 @@
     "rank": "Bronze",
     "short": "Региональный классический университет.",
     "description": "Широкий спектр программ.",
-    "programs": [
-      "Law",
-      "Economics",
-      "Education"
-    ],
+    "programs": ["Law", "Economics", "Education"],
     "admission": "Аттестат/ЕНТ.",
     "admission_details": {
       "procedure": "Электронная заявка",
@@ -665,11 +511,7 @@
     "rank": "Bronze",
     "short": "Морская и портовая подготовка.",
     "description": "Для Каспийского морского транспорта и логистики.",
-    "programs": [
-      "Maritime Transport",
-      "Logistics",
-      "Engineering"
-    ],
+    "programs": ["Maritime Transport", "Logistics", "Engineering"],
     "admission": "Аттестат, медицинское освидетельствование, профильные тесты.",
     "admission_details": {
       "procedure": "Заявка → медкомиссия → профильные тесты",
@@ -677,12 +519,8 @@
       "scholarships": "Стипендии для морской отрасли"
     },
     "international": {
-      "exchanges": [
-        "Maritime partners"
-      ],
-      "partners": [
-        "Maritime academies"
-      ],
+      "exchanges": ["Maritime partners"],
+      "partners": ["Maritime academies"],
       "for_foreign": "Специфика для иностранных моряков"
     },
     "website": "https://maritime.kz",
@@ -697,11 +535,7 @@
     "rank": "Bronze",
     "short": "Региональный вуз с практическими программами.",
     "description": "Поддержка локального рынка труда.",
-    "programs": [
-      "Agronomy",
-      "Education",
-      "Economics"
-    ],
+    "programs": ["Agronomy", "Education", "Economics"],
     "admission": "Аттестат/ЕНТ, внутренние испытания.",
     "admission_details": {
       "procedure": "Подача документов → тесты",
@@ -725,11 +559,7 @@
     "rank": "Bronze",
     "short": "Экономическое образование.",
     "description": "Фокус на экономике, финансах и менеджменте.",
-    "programs": [
-      "Economics",
-      "Finance",
-      "Business"
-    ],
+    "programs": ["Economics", "Finance", "Business"],
     "admission": "Аттестат, профильные тесты, мотивация.",
     "admission_details": {
       "procedure": "Онлайн заявка → тесты",
@@ -737,12 +567,8 @@
       "scholarships": "За успехи в учёбе"
     },
     "international": {
-      "exchanges": [
-        "Business partners"
-      ],
-      "partners": [
-        "Economic partners"
-      ],
+      "exchanges": ["Business partners"],
+      "partners": ["Economic partners"],
       "for_foreign": "Краткие программы на английском"
     },
     "website": "https://kazeu.kz",
@@ -757,11 +583,7 @@
     "rank": "Bronze",
     "short": "Региональный классический университет.",
     "description": "Широкий выбор программ и локальная значимость.",
-    "programs": [
-      "History",
-      "Biology",
-      "Education"
-    ],
+    "programs": ["History", "Biology", "Education"],
     "admission": "Аттестат/ЕНТ, стандартные требования.",
     "admission_details": {
       "procedure": "Подача документов",

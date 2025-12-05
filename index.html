@@ -6,7 +6,7 @@
 <title>DataHub — Top 25 Universities RK — 3D demo (NU)</title>
 <style>
   :root{--accent:#2563eb;--muted:#6b7280}
-  body{font-family:Inter,Segoe UI,Arial;margin:0;background:#f6fbff;color:#0f1720}
+  body{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;background:#f6fbff;color:#0f1720}
   .wrap{max-width:1200px;margin:18px auto;padding:0 18px}
   header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
   h1{margin:0;font-size:22px}
@@ -21,7 +21,7 @@
   .bronze{background:#f8efe0;color:#8a4b20}
   .small{font-size:13px;color:var(--muted)}
   .program{background:#f4f7fb;padding:6px 10px;border-radius:8px;margin:6px 6px 0 0;display:inline-block}
-  .modal{position:fixed;inset:0;background:rgba(2,6,23,.5);display:flex;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:.15s;z-index:60}
+  .modal{position:fixed;inset:0;background:rgba(2,6,23,.45);display:flex;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:.15s;z-index:60}
   .modal.show{visibility:visible;opacity:1}
   .dialog{background:#fff;border-radius:12px;padding:18px;max-width:900px;width:96%;max-height:90vh;overflow:auto}
   table{width:100%;border-collapse:collapse}
@@ -30,6 +30,8 @@
   .compare-count{background:#e8f4ff;padding:6px 10px;border-radius:999px;font-weight:700;color:#0b4a72}
   .disabled{opacity:.45;pointer-events:none}
   footer{margin:18px 0;color:var(--muted);text-align:center}
+  a{color:var(--accent)}
+  .btn{padding:8px 12px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer}
 </style>
 </head>
 <body>
@@ -59,7 +61,6 @@
   <footer>Демо-версия — данные тестовые. Для обновления данных редактируй <code>data/universities.json</code></footer>
 </div>
 
-<!-- Detail modal -->
 <div id="modal" class="modal" aria-hidden="true">
   <div class="dialog">
     <button id="close" style="float:right;border:0;background:transparent;font-size:18px;cursor:pointer">✕</button>
@@ -67,7 +68,6 @@
   </div>
 </div>
 
-<!-- Compare modal -->
 <div id="compareModal" class="modal" aria-hidden="true">
   <div class="dialog">
     <button id="closeCompare" style="float:right;border:0;background:transparent;font-size:18px;cursor:pointer">✕</button>
@@ -76,12 +76,19 @@
   </div>
 </div>
 
-<!-- 3D Tour Modal -->
 <div id="tour3dModal" class="modal" aria-hidden="true">
   <div class="dialog" style="max-width:950px">
     <button id="close3d" style="float:right;border:0;background:transparent;font-size:18px;cursor:pointer">✕</button>
     <h3 style="margin-top:0">3D-тур</h3>
-    <div id="tour3dContent"></div>
+
+    <div id="tour3dContent" style="min-height:200px"></div>
+
+    <div style="margin-top:12px;display:flex;gap:8px;align-items:center;">
+      <button id="openNewTabBtn" style="padding:8px 12px;border-radius:8px;background:#2563eb;color:white;border:0;cursor:pointer;display:none">
+        Открыть в новой вкладке
+      </button>
+      <div id="tourNote" class="small" style="color:#6b7280">Если модалка пустая или показывает ошибку — нажмите "Открыть в новой вкладке".</div>
+    </div>
   </div>
 </div>
 
@@ -111,10 +118,12 @@ const closeCompare = document.getElementById('closeCompare');
 const tour3dModal = document.getElementById('tour3dModal');
 const tour3dContent = document.getElementById('tour3dContent');
 const close3d = document.getElementById('close3d');
+const openNewTabBtn = document.getElementById('openNewTabBtn');
 
 async function loadData(){
   try{
     const res = await fetch('data/universities.json');
+    if(!res.ok) throw new Error('Ошибка загрузки JSON: ' + res.status);
     dataList = await res.json();
     initFilters();
     render();
@@ -192,12 +201,11 @@ function showDetail(id){
 
     <div style="margin-top:14px">
       <div style="font-weight:700;margin-bottom:6px">3D-тур</div>
-      ${ u.has3d ? `<button onclick="open3DTour('${u.tourLink}')" style="padding:8px 12px;border-radius:8px;background:#2563eb;color:white;border:0;cursor:pointer">Открыть 3D-тур</button>` : `<div class="small" style="color:#6b7280">3D-тур недоступен</div>` }
+      ${ u.has3d ? `<button onclick="open3DTour('${u.tourLink}')" class="btn">Открыть 3D-тур</button>` : `<div class="small" style="color:#6b7280">3D-тур недоступен</div>` }
     </div>
   `;
   modal.classList.add('show'); modal.setAttribute('aria-hidden','false');
 }
-
 close.onclick = ()=>{ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
 modal.onclick = (e)=>{ if(e.target===modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); } }
 
@@ -209,7 +217,6 @@ function toggleCompare(id){
   }
   render();
 }
-
 btnCompare.onclick = ()=>{
   if(selectedForCompare.size !== MAX_COMPARE){ alert('Выберите ровно 2 университета для сравнения.'); return; }
   showCompareModal();
@@ -235,20 +242,52 @@ function showCompareModal(){
   compareContent.innerHTML = html;
   compareModal.classList.add('show'); compareModal.setAttribute('aria-hidden','false');
 }
-
 closeCompare.onclick = ()=>{ compareModal.classList.remove('show'); compareModal.setAttribute('aria-hidden','true'); }
 compareModal.onclick = (e)=>{ if(e.target===compareModal){ compareModal.classList.remove('show'); compareModal.setAttribute('aria-hidden','true'); } }
 
 function open3DTour(url){
-  tour3dContent.innerHTML = `<iframe src="${url}" frameborder="0" allowfullscreen style="width:100%;height:520px;border-radius:10px"></iframe>`;
-  tour3dModal.classList.add('show'); tour3dModal.setAttribute('aria-hidden','false');
+  tour3dContent.innerHTML = '';
+  openNewTabBtn.style.display = 'none';
+  tour3dModal.classList.add('show');
+  tour3dModal.setAttribute('aria-hidden','false');
+
+  const iframe = document.createElement('iframe');
+  iframe.style.width = '100%';
+  iframe.style.height = '520px';
+  iframe.style.borderRadius = '10px';
+  iframe.frameBorder = '0';
+  iframe.src = url;
+  iframe.loading = 'lazy';
+
+  let loaded = false;
+  iframe.onload = () => {
+    loaded = true;
+    openNewTabBtn.style.display = 'inline-block';
+    openNewTabBtn.onclick = () => window.open(url, '_blank');
+  };
+
+  tour3dContent.appendChild(iframe);
+
+  setTimeout(() => {
+    if(!loaded){
+      tour3dContent.innerHTML = '<div class="small" style="color:#6b7280">Встраивание заблокировано (X-Frame-Options или CSP). Нажмите кнопку, чтобы открыть тур на официальном сайте.</div>';
+      openNewTabBtn.style.display = 'inline-block';
+      openNewTabBtn.onclick = () => window.open(url, '_blank');
+    }
+  }, 1200);
 }
+
 close3d.onclick = ()=>{ tour3dModal.classList.remove('show'); tour3dModal.setAttribute('aria-hidden','true'); tour3dContent.innerHTML = ''; }
-tour3dModal.onclick = (e)=>{ if(e.target===tour3dModal){ tour3dModal.classList.remove('show'); tour3dModal.setAttribute('aria-hidden','true'); tour3dContent.innerHTML = ''; } }
+tour3dModal.onclick = (e)=>{ if(e.target===tour3dModal){ close3d.click(); } }
 
-function initFilters(){ unique(dataList,'city').forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=c; city.appendChild(o); }); const fields = [...new Set(dataList.flatMap(d=>d.programs))]; fields.forEach(f=>{ const o=document.createElement('option'); o.value=f; o.textContent=f; field.appendChild(o); }); }
+function initFilters(){
+  unique(dataList,'city').forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=c; city.appendChild(o); });
+  const fields = [...new Set(dataList.flatMap(d=>d.programs))];
+  fields.forEach(f=>{ const o=document.createElement('option'); o.value=f; o.textContent=f; field.appendChild(o); });
+}
 
-[q,city,field,rankFilter,sortSel].forEach(el => el.addEventListener('input', render)); q.addEventListener('keydown', e=>{ if(e.key==='Enter') render(); });
+[q,city,field,rankFilter,sortSel].forEach(el => el.addEventListener('input', render));
+q.addEventListener('keydown', e=>{ if(e.key==='Enter') render(); });
 
 loadData();
 </script>
